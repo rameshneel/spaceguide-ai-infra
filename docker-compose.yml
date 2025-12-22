@@ -54,6 +54,7 @@ services:
       - ${ENV_FILE:-./.env}
     volumes:
       - ./backend-data/generated-images:/app/public/generated-images
+      - ./backend-data/generated-videos:/app/public/generated-videos
       - ./backend-data/uploads:/app/uploads
       - ./backend-data/logs:/app/logs
     networks:
