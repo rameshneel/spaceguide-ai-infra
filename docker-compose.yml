@@ -51,7 +51,7 @@ services:
     ports:
       - "${BACKEND_HOST_PORT:-5000}:5000"
     env_file:
-      - ${ENV_FILE:-./.env}
+      - ${ENV_FILE:-./env}
     networks:
       - app-network
     healthcheck:
