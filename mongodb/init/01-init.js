@@ -16,7 +16,6 @@ db.createUser({
 // Create collections with indexes
 db.createCollection("users");
 db.users.createIndex({ email: 1 }, { unique: true });
-db.users.createIndex({ username: 1 }, { unique: true });
 
 db.createCollection("sessions");
 db.sessions.createIndex({ userId: 1 });

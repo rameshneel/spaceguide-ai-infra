@@ -18,24 +18,22 @@ CORS_ORIGINS=https://dev.spaceguideai.com,https://api.spaceguideai.com,http://82
 PORT=5000
 HOST=0.0.0.0
 FRONTEND_URL=https://dev.spaceguideai.com
+BASE_URL=https://api.spaceguideai.com
 
 # Frontend API URL
 VITE_API_URL=https://api.spaceguideai.com/api
 
-
-# AI Providers 
+# AI Providers
 EMBEDDING_PROVIDER=openai
 CHAT_PROVIDER=openai
 TEXT_WRITER_PROVIDER=openai
 IMAGE_PROVIDER=openai
 VIDEO_GENERATOR_PROVIDER=qwen
 
-
-# AI Service Keys 
+# AI Service Keys
 OPENAI_API_KEY=sk-proj-nfzOgTXJlLGZpGzLmBA-UHcQ0dqyafEot8ju4a1h2Ng3s8ckoFRydLDwg7UXRm77S4P3dX3jlKOP-HLvcJ5gc-eXWzWM1OMA
 QWEN_API_KEY=sk-94ece2fed5eda9b54
 DASHSCOPE_API_KEY=sk-94ece2fed5ed43c44
-
 
 # ChromaDB Cloud Configuration
 CHROMADB_URL=https://api.trychroma.com
@@ -43,8 +41,7 @@ CHROMADB_API_KEY=ck-2rzjhnh7SjkKj9S6Yvvtv8YduxHZfkbA
 CHROMADB_TENANT=ccca4632-1557-4b261683
 CHROMADB_DATABASE=dev
 
-
-# Payment Configuration 
+# Payment Configuration
 # PayPal
 PAYPAL_CLIENT_ID=AdkEfLcidinEFc7hJhgwWriIKd-S2OM0hbxoaT588KQn
 PAYPAL_CLIENT_SECRET=EKqzRjw0GHDvLso9PuBQ2uqvLwWzbf-F4G_p9Q_kpyzb8G31QQWAkGNX5_96aA
@@ -52,10 +49,9 @@ PAYPAL_MODE=sandbox
 PAYPAL_WEBHOOK_ID=
 PAYPAL_RETURN_URL=https://dev.prelaunchserver.com
 PAYPAL_CANCEL_URL=https://dev.prelaunchserver.com
-NIFTYPAYPAL_BRAND_NAME=AI project 
+NIFTYPAYPAL_BRAND_NAME=AI project
 PAYPAL_HOME_URL=https://dev.prelaunchserver.com
 
 # Rate Limiting
 RATE_LIMIT_WINDOW_MS=900000
 RATE_LIMIT_MAX_REQUESTS=100
-VIDEO_GENERATOR_PROVIDER=mock
