@@ -135,7 +135,7 @@ services:
 
   # Automatic MongoDB Backup Service
   mongodb-backup:
-    image: prodrigestivill/mongodb-backup:latest
+    image: fradelg/mongodb-backup:latest
     container_name: spaceguide-ai-mongodb-backup
     restart: unless-stopped
     environment:
