@@ -133,20 +133,26 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Automatic MongoDB Backup Service
+  # Automatic MongoDB Backup Service (Using standard mongo image)
   mongodb-backup:
-    image: fradelg/mongodb-backup:latest
+    image: mongo:7.0
     container_name: spaceguide-ai-mongodb-backup
     restart: unless-stopped
+    entrypoint: ["/bin/bash", "-c"]
+    command: 
+      - |
+        while true; do
+          echo "Starting backup at $$(date)"
+          mongodump --host mongodb --port 27017 --username $$MONGO_ROOT_USER --password $$MONGO_ROOT_PASSWORD --authenticationDatabase admin --db $$MONGO_DATABASE --archive --gzip > /backup/spaceguide_db_$$(date +%Y%m%d_%H%M%S).gz
+          echo "Backup finished. Cleaning up files older than 7 days..."
+          find /backup -type f -name "*.gz" -mtime +7 -delete
+          echo "Sleeping for 24 hours..."
+          sleep 86400
+        done
     environment:
-      MONGODB_HOST: mongodb
-      MONGODB_PORT: 27017
-      MONGODB_USER: ${MONGO_ROOT_USER:-admin}
-      MONGODB_PASSWORD: ${MONGO_ROOT_PASSWORD:?err}
-      MONGODB_DB: ${MONGO_DATABASE:-spaceguideai}
-      BACKUP_KEEP_DAYS: 7
-      BACKUP_INTERVAL: 1440 # Every 24 hours (1440 minutes)
-      MONGODB_OPTS: "--authSource=admin"
+      MONGO_ROOT_USER: ${MONGO_ROOT_USER:-admin}
+      MONGO_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?err}
+      MONGO_DATABASE: ${MONGO_DATABASE:-spaceguideai}
     volumes:
       - ./backups/mongodb:/backup
     networks:
