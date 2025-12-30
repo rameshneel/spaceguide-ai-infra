@@ -133,6 +133,28 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  # Automatic MongoDB Backup Service
+  mongodb-backup:
+    image: prodrigestivill/mongodb-backup:latest
+    container_name: spaceguide-ai-mongodb-backup
+    restart: unless-stopped
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      MONGODB_USER: ${MONGO_ROOT_USER:-admin}
+      MONGODB_PASSWORD: ${MONGO_ROOT_PASSWORD:?err}
+      MONGODB_DB: ${MONGO_DATABASE:-spaceguideai}
+      BACKUP_KEEP_DAYS: 7
+      BACKUP_INTERVAL: 1440 # Every 24 hours (1440 minutes)
+      MONGODB_OPTS: "--authSource=admin"
+    volumes:
+      - ./backups/mongodb:/backup
+    networks:
+      - app-network
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
 networks:
   app-network:
     driver: bridge
