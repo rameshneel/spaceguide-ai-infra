@@ -114,3 +114,7 @@ mongodb/data/
 # Kubernetes
 *.yaml.bak
 *.yml.bakbackend-data/
+*-backend-data/
+*backup-*.tar.gz
+*backend-data
+*backups
