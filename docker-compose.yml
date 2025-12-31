@@ -4,6 +4,7 @@ services:
     image: mongo:7.0
     container_name: spaceguide-ai-mongodb
     restart: unless-stopped
+    command: mongod --wiredTigerCacheSizeGB 0.25
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:-admin}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?err}
